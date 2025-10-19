@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace GymManagmentDAL.Repositories.Interfaces
 {
-    public interface IBookingRepository
+    public interface IBookingRepository : IGenericRepository<Booking>
     {
-        Booking? GetById(int id);
-        IEnumerable<Booking> GetAll();
-        int Add(Booking booking);
-        int Update(Booking booking);
-        int Delete(int id);
+
     }
 }
