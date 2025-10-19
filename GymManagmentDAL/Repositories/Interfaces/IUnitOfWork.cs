@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace GymManagmentDAL.Repositories.Interfaces
 {
-    public interface IHealthRecordRepository : IGenericRepository<HealthRecord>
+    public interface IUnitOfWork
     {
-
+        IGenericRepository<TEntity> GetRepository<TEntity>() where TEntity : BaseEntity;
+        int SaveChanges();
     }
 }

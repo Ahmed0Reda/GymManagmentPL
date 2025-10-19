@@ -7,12 +7,8 @@ using System.Threading.Tasks;
 
 namespace GymManagmentDAL.Repositories.Interfaces
 {
-    public interface ITrainerRepository
+    public interface ITrainerRepository : IGenericRepository<Trainer>
     {
-        Trainer? GetById(int id);
-        IEnumerable<Trainer> GetAll();
-        int Add(Trainer trainer);
-        int Update(Trainer trainer);
-        int Delete(int id);
+
     }
 }
