@@ -68,6 +68,7 @@ namespace GymmanagmentBLL.Services.Classes
 
 
             });
+            _unitOfWork.SaveChanges();
             return trainerViewModels;
         }
 
@@ -119,6 +120,7 @@ namespace GymmanagmentBLL.Services.Classes
             if (sessions is not null && sessions.Any())
                 return false;
             trainerRepo.Delete(trainer);
+            _unitOfWork.SaveChanges();
             return true;
 
         }
@@ -141,6 +143,7 @@ namespace GymmanagmentBLL.Services.Classes
             trainer.UpdatedAt = DateTime.Now;
             trainer.Specialities = Enum.Parse<Specialities>(model.Specialities);
             _unitOfWork.GetRepository<Trainer>().Update(trainer);
+            _unitOfWork.SaveChanges();
             return true;
         }
         #region Helper Methods

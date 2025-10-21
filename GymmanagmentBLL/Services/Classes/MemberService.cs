@@ -50,6 +50,7 @@ namespace GymmanagmentBLL.Services.Classes
                     } 
                 };
                 _unitOfWork.GetRepository<Member>().Add(member);
+                _unitOfWork.SaveChanges();
                 return true;
             }
             catch
@@ -157,6 +158,7 @@ namespace GymmanagmentBLL.Services.Classes
                         _unitOfWork.GetRepository<Membership>().Delete(membership);
                 }
                 _unitOfWork.GetRepository<Member>().Delete(member);
+                _unitOfWork.SaveChanges();
                 return true;
             }
             catch
@@ -182,6 +184,7 @@ namespace GymmanagmentBLL.Services.Classes
             member.Address.City = model.City;
             member.UpdatedAt = DateTime.Now;
             _unitOfWork.GetRepository<Member>().Update(member);
+            _unitOfWork.SaveChanges();
             return true;
 
         }
