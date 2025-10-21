@@ -1,5 +1,5 @@
 ﻿using GymmanagmentBLL.Services.Interfaces;
-using GymmanagmentBLL.ViewModels.MemberViewModels;
+using GymmanagmentBLL.ViewModels;
 using GymManagmentDAL.Entities;
 using GymManagmentDAL.Repositories.Classes;
 using GymManagmentDAL.Repositories.Interfaces;
@@ -43,10 +43,10 @@ namespace GymmanagmentBLL.Services.Classes
                     },
                     HealthRecord = new HealthRecord
                     {
-                        Height = model.HealthRecord.Height,
-                        Weight = model.HealthRecord.Weight,
-                        BloodType = model.HealthRecord.BloodType,
-                        Note = model.HealthRecord.Note
+                        Height = model.HealthRecordViewModel.Height,
+                        Weight = model.HealthRecordViewModel.Weight,
+                        BloodType = model.HealthRecordViewModel.BloodType,
+                        Note = model.HealthRecordViewModel.Note
                     } 
                 };
                 _unitOfWork.GetRepository<Member>().Add(member);
@@ -172,9 +172,9 @@ namespace GymmanagmentBLL.Services.Classes
             var member = _unitOfWork.GetRepository<Member>().GetById(memberId);
             if (member is null)
                 return false;
-            if (IsEmailExists(model.Email))
-                return false;
-            if (IsPhoneExists(model.Phone))
+            var emailExist = _unitOfWork.GetRepository<Member>().GetAll(x => x.Email == model.Email && x.Id != memberId);
+            var phoneExist = _unitOfWork.GetRepository<Member>().GetAll(x => x.PhoneNumber == model.Phone  && x.Id != memberId);
+            if(phoneExist.Any() || emailExist.Any())
                 return false;
             member.Name = model.Name;
             member.Email = model.Email;
