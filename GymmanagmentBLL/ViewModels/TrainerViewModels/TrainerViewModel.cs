@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymmanagmentBLL.ViewModels.TrainerViewModels
+namespace GymmanagmentBLL.ViewModels
 {
     public class TrainerViewModel
     {
         public int Id { get; set; }
+        public string? Photo { get; set; }
         public string Name { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string PhoneNumber { get; set; } = null!;

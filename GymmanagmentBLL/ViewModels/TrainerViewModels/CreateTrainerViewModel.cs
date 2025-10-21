@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GymmanagmentBLL.ViewModels.TrainerViewModels
+namespace GymmanagmentBLL.ViewModels
 {
     public class CreateTrainerViewModel
     {
@@ -39,6 +39,6 @@ namespace GymmanagmentBLL.ViewModels.TrainerViewModels
         [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Street can only contain letters, numbers, and spaces")]
         public string Street { get; set; } = null!;
         [Required(ErrorMessage = "Health Record is required")]
-        public SpecialitiesViewModel Specialities { get; set; } = null!;
+        public Specialities Specialities { get; set; }
     }
 }

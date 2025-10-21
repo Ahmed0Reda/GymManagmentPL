@@ -1,6 +1,7 @@
 ﻿using GymManagmentDAL.Data.Contexts;
 using GymManagmentDAL.Entities;
 using GymManagmentDAL.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,32 @@ namespace GymManagmentDAL.Repositories.Classes
 {
     public class SessionRepository : GenericRepository<Session>, ISessionRepository
     {
+        private readonly GymDbContext _context;
+
         public SessionRepository(GymDbContext context) : base(context)
         {
+            _context = context;
+        }
+
+        public int GetCountOfBookedSlots(int sessionId)
+        {
+            return _context.Bookings.Where(x => x.SessionId == sessionId).Count();
+        }
+
+        public IEnumerable<Session> GetSessionsWithTrainerAndCategory()
+        {
+            return _context.Sessions
+                .Include(s => s.Trainer)
+                .Include(s => s.Category)
+                .ToList();
+        }
+
+        public Session GetSessionWithTrainerAndCategory(int sessionId)
+        {
+            return _context.Sessions
+                .Include(s => s.Trainer)
+                .Include(s => s.Category)
+                .FirstOrDefault(x => x.Id == sessionId);
         }
     }
 }

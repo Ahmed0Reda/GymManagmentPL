@@ -1,6 +1,5 @@
 ﻿using GymmanagmentBLL.Services.Interfaces;
-using GymmanagmentBLL.ViewModels.MemberViewModels;
-using GymmanagmentBLL.ViewModels.TrainerViewModels;
+using GymmanagmentBLL.ViewModels;
 using GymManagmentDAL.Entities;
 using GymManagmentDAL.Entities.Enum;
 using GymManagmentDAL.Repositories.Interfaces;
@@ -41,12 +40,12 @@ namespace GymmanagmentBLL.Services.Classes
                         City = model.City,
                         Street = model.Street
                     },
-                    Specialities = model.Specialities.selectedSpecialities, 
+                    Specialities = model.Specialities, 
                 };
                 _unitOfWork.GetRepository<Trainer>().Add(trainer);
-                return true;
+                return _unitOfWork.SaveChanges() > 0;
             }
-            catch
+            catch (Exception)
             {
                 return false;
             }
@@ -63,9 +62,7 @@ namespace GymmanagmentBLL.Services.Classes
                 Name = x.Name,
                 Email = x.Email,
                 PhoneNumber = x.PhoneNumber,
-                DateOfBirth = x.DateOfBirth.ToShortDateString(),
-                Gender = x.Gender.ToString(),
-
+                Specialities = x.Specialities.ToString()
 
             });
             return trainerViewModels;
@@ -104,7 +101,7 @@ namespace GymmanagmentBLL.Services.Classes
                 BuildingNumber = trainer.Address.BuildingNumber,
                 Street = trainer.Address.Street,
                 City = trainer.Address.City,
-                Specialities = trainer.Specialities.ToString()
+                Specialities = trainer.Specialities
             };
             return trainerToUpdateViewModel;
         }
@@ -119,6 +116,7 @@ namespace GymmanagmentBLL.Services.Classes
             if (sessions is not null && sessions.Any())
                 return false;
             trainerRepo.Delete(trainer);
+            _unitOfWork.SaveChanges();
             return true;
 
         }
@@ -139,8 +137,9 @@ namespace GymmanagmentBLL.Services.Classes
             trainer.Address.Street = model.Street;
             trainer.Address.City = model.City;
             trainer.UpdatedAt = DateTime.Now;
-            trainer.Specialities = Enum.Parse<Specialities>(model.Specialities);
+            trainer.Specialities = model.Specialities;
             _unitOfWork.GetRepository<Trainer>().Update(trainer);
+            _unitOfWork.SaveChanges();
             return true;
         }
         #region Helper Methods
