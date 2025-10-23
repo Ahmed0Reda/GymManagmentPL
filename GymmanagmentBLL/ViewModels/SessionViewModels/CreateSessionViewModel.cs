@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GymManagementBLL.ViewModels.SessionViewModels
+namespace GymManagmentBLL.ViewModels
 {
 	public class CreateSessionViewModel
 	{

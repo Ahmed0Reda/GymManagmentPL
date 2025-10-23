@@ -1,4 +1,4 @@
-﻿namespace GymManagementBLL.ViewModels.PlanViewModels
+﻿namespace GymManagmentBLL.ViewModels
 {
 	public class PlanViewModel
 	{

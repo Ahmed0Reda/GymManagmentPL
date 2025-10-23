@@ -1,4 +1,4 @@
-﻿namespace GymManagementBLL.ViewModels.SessionViewModels
+﻿namespace GymManagmentBLL.ViewModels
 {
 	public class CategorySelectViewModel
 	{
