@@ -1,4 +1,4 @@
-﻿using GymManagementBLL.ViewModels.PlanViewModels;
+﻿using GymManagmentBLL.ViewModels;
 using GymmanagmentBLL.Services.Interfaces;
 using GymManagmentDAL.Entities;
 using GymManagmentDAL.Repositories.Interfaces;

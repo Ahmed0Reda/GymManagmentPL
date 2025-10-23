@@ -1,5 +1,4 @@
-﻿using GymManagementBLL.ViewModels;
-using GymmanagmentBLL.Services.Interfaces;
+﻿using GymmanagmentBLL.Services.Interfaces;
 using GymmanagmentBLL.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 

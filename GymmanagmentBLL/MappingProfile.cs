@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using GymManagementBLL.ViewModels.PlanViewModels;
-using GymManagementBLL.ViewModels.SessionViewModels;
 using GymmanagmentBLL.ViewModels;
+using GymManagmentBLL.ViewModels;
 using GymManagmentDAL.Entities;
 using System;
 using System.Collections.Generic;
