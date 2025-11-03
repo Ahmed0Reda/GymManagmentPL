@@ -1,5 +1,6 @@
 using GymManagementDAL.Entities;
 using GymmanagmentBLL;
+using GymmanagmentBLL.Services.AttachmentService;
 using GymmanagmentBLL.Services.Classes;
 using GymmanagmentBLL.Services.Interfaces;
 using GymManagmentDAL.Data.Contexts;
@@ -33,6 +34,7 @@ namespace GymManagmentPL
             builder.Services.AddScoped<ITrainerService, TrainerService>();
             builder.Services.AddScoped<ISessionService, SessionService>();
             builder.Services.AddScoped<IPlanService, PlanService>();
+            builder.Services.AddScoped<IAttachmentService, AttachmentService>();
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(Config =>
             {
